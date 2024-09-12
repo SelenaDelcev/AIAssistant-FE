@@ -1,0 +1,42 @@
+const Languages = () => {
+    return (
+      <>
+        <option value="English">English</option>
+        <option value="Arabic">Arabic</option>
+        <option value="Bulgarian">Bulgarian</option>
+        <option value="Burmese">Burmese</option>
+        <option value="Czech">Czech</option>
+        <option value="Danish">Danish</option>
+        <option value="Dutch">Dutch</option>
+        <option value="French">French</option>
+        <option value="German">German</option>
+        <option value="Greek">Greek</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Hungarian">Hungarian</option>
+        <option value="Indonesian">Indonesian</option>
+        <option value="Italian">Italian</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Javanese">Javanese</option>
+        <option value="Korean">Korean</option>
+        <option value="Malay">Malay</option>
+        <option value="Mandarian">Mandarian Chinese</option>
+        <option value="Persian">Persian</option>
+        <option value="Polish">Polish</option>
+        <option value="Portuguese">Portuguese</option>
+        <option value="Romanian">Romanian</option>
+        <option value="Russian">Russian</option>
+        <option value="Spanish">Spanish</option>
+        <option value="Swedish">Swedish</option>
+        <option value="Thai">Thai</option>
+        <option value="Turkish">Turkish</option>
+        <option value="Ukranian">Ukranian</option>
+        <option value="Urdu">Urdu</option>
+        <option value="Vietnamese">Vietnamese</option>
+        <option value="WuChinese">Wu Chinese</option>
+        <option value="YueChinese">Yue Chinese</option>
+      </>
+    );
+  };
+  
+  export default Languages;
+  

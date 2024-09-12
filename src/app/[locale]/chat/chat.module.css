@@ -1,0 +1,13 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.row {
+  flex: 1 1 auto;
+}
+
+.fullWidth {
+  width: 100%;
+}

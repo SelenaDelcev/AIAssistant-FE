@@ -1,0 +1,89 @@
+.container {
+    position: fixed;
+    top: 30%; /* Centers the form vertically */
+    left: 37%; /* Centers the form horizontally */
+    transform: translate(-50%, -50%); /* Offsets the form to perfectly center it */
+    max-width: 600px;
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000; /* Ensures it stays above other elements */
+}
+
+.draggable {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a4a4a;
+    padding: 10px;
+    cursor: move;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rowOfChoices {
+    display: flex;
+    justify-content: space-between; 
+    gap: 10px;
+}
+
+.choice {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 5px;
+}
+
+.field {
+    padding: 5px;
+    min-width: 100px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.prompt {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 20px;
+}
+
+.executeTemplateButton {
+    font-size: 14px;
+    background-color: #3d3d3d;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.executeTemplateButton:hover {
+    background-color: #575757;
+}
