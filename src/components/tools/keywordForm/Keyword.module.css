@@ -1,14 +1,14 @@
 .container {
     position: fixed;
-    top: 30%; /* Centers the form vertically */
-    left: 37%; /* Centers the form horizontally */
-    transform: translate(-50%, -50%); /* Offsets the form to perfectly center it */
-    max-width: 600px;
+    top: 30%; 
+    left: 37%;
+    transform: translate(-50%, -50%);
+    max-width: 650px;
     background-color: #333;
     color: white;
     border-radius: 8px;
     overflow: hidden;
-    z-index: 1000; /* Ensures it stays above other elements */
+    z-index: 1000; 
 }
 
 .draggable {
