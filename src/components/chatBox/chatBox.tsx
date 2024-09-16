@@ -156,4 +156,6 @@ const Chat = forwardRef(({ locale }: { locale: string }, ref) => {
   );
 });
 
+Chat.displayName = 'Chat';
+
 export default Chat;
