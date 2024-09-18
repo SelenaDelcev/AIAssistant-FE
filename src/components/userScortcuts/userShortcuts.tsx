@@ -61,10 +61,9 @@ const UserShortcuts = ({
             >
               <Card className={style.card}>
                 <CardContent>
-                  <Typography variant="h6" component="div">
+                  <Typography variant="h6" component="div" >
                     {card.title}
                   </Typography>
-                  <Typography variant="body2">{card.content}</Typography>
                 </CardContent>
               </Card>
             </a>

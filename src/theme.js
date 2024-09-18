@@ -4,23 +4,14 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#2a2a2a",
+      main: "#3d3d3d",
     },
     secondary: {
-      main: "#dc004e",
+      main: "#2a2a2a",
     },
 
     mode: "light",
   },
-  // components: {
-  //   MuiPaper: {
-  //     styleOverrides: {
-  //       root: {
-  //         backgroundColor: "#a8a8a8",
-  //       },
-  //     },
-  //   },
-  // },
 });
 
 export default theme;

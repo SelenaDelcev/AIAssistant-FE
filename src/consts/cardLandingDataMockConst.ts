@@ -1,10 +1,11 @@
 export const cardLandingDataMockConst = [
   {
-    title: "Card 1",
+    title: "Marketing Asistent",
     image:
       "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/fd0e7030-2d5b-420d-a82a-e7d7d7d6e33c/bd231750-c829-46ae-ba1d-4a42cdb841c2.png",
-    description: "This is the description for card 1.",
-  },
+    href:
+      "http://localhost:3000/chat"
+    },
   {
     title: "Card 2",
     image:

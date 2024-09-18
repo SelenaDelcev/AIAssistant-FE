@@ -7,9 +7,8 @@ import Languages from './choices/Languages';
 import VoiceTones from './choices/VoiceTones';
 import WritingStyle from './choices/WritingStyle';
 import Category from './choices/Category';
-import { link } from 'fs';
 
-const KeywordForm: React.FC<{ handleSubmit: (message: string) => void, onClose: () => void }> = ({ handleSubmit, onClose }) => {
+const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: string) => void }> = ({ onClose, handleSubmit }) => {
   const [category, setCategory] = useState<string>('');
   const [subCategory, setSubCategory] = useState<string>('');
   const [template, setTemplate] = useState<string>(''); 
@@ -32,7 +31,16 @@ const KeywordForm: React.FC<{ handleSubmit: (message: string) => void, onClose: 
   const [jobDescription, setJobDescription] = useState<string>('');
   const [length, setLenght] = useState<string>('300');
   const [linkedinPost, setLinkedinPost] = useState<string>('');
-  const [commentType, setCommentType] = useState<string>('appreciative');    
+  const [commentType, setCommentType] = useState<string>('appreciative');
+  
+  useEffect(() => {
+    setSubCategory("");
+    setTemplate("");
+  }, [category]);
+
+  useEffect(() => {
+    setTemplate("");
+  }, [subCategory]);
 
   useEffect(() => {
     updateTextAreaValue();
@@ -101,7 +109,8 @@ const KeywordForm: React.FC<{ handleSubmit: (message: string) => void, onClose: 
   };
 
   const handleExecute = () => {
-    handleSubmit(textareaValue); 
+    handleSubmit(textareaValue);
+    handleClose();
   };
 
   if (!visible) return null;
@@ -117,7 +126,7 @@ const KeywordForm: React.FC<{ handleSubmit: (message: string) => void, onClose: 
       <div className={styles.container}>
         <div className={styles.draggable}>
           <div className={styles.title}>
-            <span>AI Assistant</span>
+            <span>Generator upita</span>
           </div>
           <button className={styles.closeButton} onClick={handleClose}>
             ✖
@@ -651,7 +660,7 @@ const KeywordForm: React.FC<{ handleSubmit: (message: string) => void, onClose: 
                 </div>
                 <div className={styles.buttonContainer}>
                   <button type="button" onClick={handleExecute} className={styles.executeTemplateButton}>
-                    Execute Template
+                    Pošalji poruku
                   </button>
                 </div>
               </>

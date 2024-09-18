@@ -6,7 +6,6 @@ const Container = styled("div")(() => ({
   maxHeight: "70vh",
   overflow: "auto",
 }));
-//TODO cardData should be a type same as we get it from BE
 const SupportMenu = ({ cardData }: { cardData: any }) => {
   return (
     <Container>

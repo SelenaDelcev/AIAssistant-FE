@@ -20,6 +20,7 @@
     "i18next-resources-to-backend": "^1.2.1",
     "next": "14.2.5",
     "next-i18n-router": "^5.5.1",
+    "openai": "^4.62.0",
     "react": "^18",
     "react-dom": "^18",
     "react-draggable": "^4.4.6",
