@@ -7,6 +7,8 @@ import Languages from './choices/Languages';
 import VoiceTones from './choices/VoiceTones';
 import WritingStyle from './choices/WritingStyle';
 import Category from './choices/Category';
+import { Caesar_Dressing } from 'next/font/google';
+import { title } from 'process';
 
 const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: string) => void }> = ({ onClose, handleSubmit }) => {
   const [category, setCategory] = useState<string>('');
@@ -16,7 +18,6 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
   const [voiceTone, setVoiceTone] = useState<string>('Default'); 
   const [writingStyle, setWritingStyle] = useState<string>('Default'); 
   const [textareaValue, setTextAreaValue] = useState<string>(''); 
-  const [visible, setVisible] = useState<boolean>(true);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [topic, setTopic] = useState<string>('');
   const [totalPosts, setTotalPosts] = useState<string>('');
@@ -32,6 +33,8 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
   const [length, setLenght] = useState<string>('300');
   const [linkedinPost, setLinkedinPost] = useState<string>('');
   const [commentType, setCommentType] = useState<string>('appreciative');
+  const [inputValue, setInputValue] = useState('');
+  const [phrases, setPhrases] = useState<string[]>([]);
   
   useEffect(() => {
     setSubCategory("");
@@ -44,7 +47,7 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
 
   useEffect(() => {
     updateTextAreaValue();
-  }, [category, subCategory, template, language, voiceTone, writingStyle, topic, totalPosts, audience, threadsPerWeek, totalMonths, instagramPost, total, instagramComment, industry, postLength, jobDescription, length, linkedinPost, commentType]);
+  }, [category, subCategory, template, language, voiceTone, writingStyle, topic, totalPosts, audience, threadsPerWeek, totalMonths, instagramPost, total, instagramComment, industry, postLength, jobDescription, length, linkedinPost, commentType, phrases]);
 
   useEffect(() => {
     if (textAreaRef.current) {
@@ -52,6 +55,26 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
       textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
     }
   }, [textareaValue]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleAddPhrase = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      setPhrases((prevPhrases) => [...prevPhrases, inputValue.trim()]);
+      setInputValue('');
+    }
+  };
+
+  const handleDeletePhrase = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+    e.preventDefault();
+    setPhrases((prevPhrases) => {
+      const updatedPhrases = prevPhrases.filter((_, i) => i !== index);
+      return updatedPhrases;
+    });
+  };
 
   const updateTextAreaValue = () => {
     let formattedText = `Please ignore all previous instructions. Please respond only in the ${language} language`;
@@ -88,13 +111,23 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
         if(template === 'Kreiraj Linkedin oglas')
           formattedText = `${formattedText}. You are a sales manager with expertise in LinkedIn Ads creation. Generate 10 compelling LinkedIn ad headlines about the topic "${topic}". The headlines should be between 140 to 150 characters long. After this, generate ${length} compelling LinkedIn ad descriptions about the topics "${topic}". The descriptions should be between 60 to 70 characters long`;
       }
+    } else if (category === 'blog') {
+      if(template === 'Generiši naslove za blogove') 
+        formattedText = `${formattedText}. You are an expert copywriter who writes catchy titles for blog posts. Write ${total} catchy blog post titles with a hook for the topic "${topic}". Do not use single quotes, double quotes or any other enclosing characters"`;
+      if(template === 'Generiši opis za blog') 
+        formattedText = `${formattedText}. You are an expert copywriter who writes catchy descriptions for blog posts. Write ${total} catchy blog post descriptions with a hook for the blog post titled "${topic}". The descriptions should be less than 160 characters. The descriptions should include the words from the title "${title}. Do not use single quotes, double quotes or any other enclosing characters"`;
+      if(template === 'Generiši ceo blog od teme') 
+        formattedText = `${formattedText}. You are an expert copywriter who writes detailed and thoughtful blog articles. I will give you a topic for an article and I want you to create an outline for the topic with a minimum of ${total} headings and subheadings. I then want you to expand in the ${language} language on each of the individual subheadings in the outline to create a complete article from it. Please intersperse short and long sentences. Utilize uncommon terminology to enhance the originality of the content. Please format the content in a professional format. Send me the outline and then immediately start writing the complete article. The blog article topic is - "${topic}"`;
+      if(phrases.length > 0) {
+        const keywords = phrases.join(', ');
+        formattedText = `${formattedText}. Use keywords like: ${keywords}`;
+      }
     }
     formattedText = `${formattedText}. You have a ${voiceTone} tone of voice. You have a ${writingStyle} writing style. Do not self reference. Do not explain what you are doing.`;
     setTextAreaValue(formattedText);
   };
 
   const subCategoriesMap: { [key: string]: string[] } = {
-    blog: ["pisanjeBloga", "seoSaveti", "tehnickiBlogovi"],
     socialPost: ["Instagram", "Facebook", "Linkedin"],
     landingPage: ["konverzionaStranica", "proizvodnaStranica"],
     newsletter: ["promotivni", "informativni", "edukativni"],
@@ -103,6 +136,7 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
   };
 
   const templateMap: { [key: string]: string[] } = {
+    blog: ["Generiši naslove za blogove", "Generiši opis za blog", "Generiši ceo blog od teme"],
     Instagram: ["Generiši opis za nalog", "Zakaži objavu", "Generiši hashtag", "Generiši odgovor na komentar"],
     Facebook: ["Ideje za Facebook objavu", "Kreiraj oglas", "Zakaži Facebook objavu"],
     Linkedin: ["Kreiraj Linkedin objavu", "Generiši biografiju", "Zakaži objavu", "Generiši Linkedin hashtag", "Generiši komentar", "Kreiraj Linkedin oglas"],
@@ -113,10 +147,7 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
     handleClose();
   };
 
-  if (!visible) return null;
-
   const handleClose = () => {
-    setVisible(false);
     onClose();
     history.replaceState(null, "", " "); 
   };
@@ -144,19 +175,21 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
                   <Category />
                 </select>
               </div>
-              <div className={styles.choice}>
-                <label htmlFor="subCategory" className={styles.label}>
-                  Potkategorija:
-                </label>
-                <select id="subCategory" value={subCategory} onChange={e => setSubCategory(e.target.value)} className={styles.field} disabled={!category}>
-                  <option value="">Izaberi potkategoriju</option>
-                  {category && subCategoriesMap[category]?.map((subCategoryOption, index) => (
-                    <option key={index} value={subCategoryOption}>
-                      {subCategoryOption}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {category != "blog" && (
+                <div className={styles.choice}>
+                  <label htmlFor="subCategory" className={styles.label}>
+                    Potkategorija:
+                  </label>
+                  <select id="subCategory" value={subCategory} onChange={e => setSubCategory(e.target.value)} className={styles.field} disabled={!category}>
+                    <option value="">Izaberi potkategoriju</option>
+                    {category && subCategoriesMap[category]?.map((subCategoryOption, index) => (
+                      <option key={index} value={subCategoryOption}>
+                        {subCategoryOption}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
               <div className={styles.choice}>
                 <label htmlFor="template" className={styles.label}>
                   Templejt:
@@ -166,10 +199,15 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
                   value={template} 
                   onChange={e => setTemplate(e.target.value)} 
                   className={styles.field} 
-                  disabled={!subCategory} 
+                  disabled={!subCategory && category !== 'blog'} 
                 >
                   <option value="">Izaberi templejt</option>
                   {subCategory && templateMap[subCategory]?.map((templateOption, index) => (
+                    <option key={index} value={templateOption}>
+                      {templateOption}
+                    </option>
+                  ))}
+                  {category === 'blog' && templateMap[category]?.map((templateOption, index) => (
                     <option key={index} value={templateOption}>
                       {templateOption}
                     </option>
@@ -642,6 +680,102 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
                         className={styles.field}
                         />
                       </div>   
+                    </div>
+                  </>
+                )}
+                {(template === "Generiši naslove za blogove" || template === "Generiši ceo blog od teme") && (
+                  <>
+                    <div className={styles.rowOfChoices}>
+                      <div className={styles.choice}>
+                        <label htmlFor="topic" className={styles.label}>
+                          Tema:
+                        </label>
+                        <input
+                        type="text"
+                        id="topic"
+                        value={topic}
+                        onChange={(e) => setTopic(e.target.value)}
+                        placeholder="Unesite temu za blog"
+                        className={styles.field}
+                        />
+                      </div>
+                      <div className={styles.choice}>
+                        <label htmlFor="total" className={styles.label}>
+                          Ukupno naslova:
+                        </label>
+                        <input
+                        type="number"
+                        id="total"
+                        value={total}
+                        onChange={(e) => setTotal(e.target.value)}
+                        min="1"
+                        className={styles.field}
+                        placeholder="Unesite ukupan broj naslova"
+                        />
+                      </div>  
+                    </div>
+                  </>
+                )}
+                {template === "Generiši opis za blog" && (
+                  <>
+                    <div className={styles.rowOfChoices}>
+                      <div className={styles.choice}>
+                        <label htmlFor="topic" className={styles.label}>
+                          Naslov:
+                        </label>
+                        <input
+                        type="text"
+                        id="topic"
+                        value={topic}
+                        onChange={(e) => setTopic(e.target.value)}
+                        placeholder="Unesite naslov za blog"
+                        className={styles.field}
+                        />
+                      </div>
+                      <div className={styles.choice}>
+                        <label htmlFor="total" className={styles.label}>
+                          Ukupno opisa:
+                        </label>
+                        <input
+                        type="number"
+                        id="total"
+                        value={total}
+                        onChange={(e) => setTotal(e.target.value)}
+                        min="1"
+                        className={styles.field}
+                        placeholder="Unesite ukupan broj naslova"
+                        />
+                      </div>  
+                    </div>
+                  </>
+                )}
+                {(template == "Generiši naslove za blogove" || template == 'Generiši opis za blog' || template == 'Generiši ceo blog od teme') && (
+                  <>
+                    <div className={styles.rowOfChoices}>
+                      <div className={styles.choice}>
+                        <label htmlFor="input" className={styles.label}>
+                          Unesite ključne reči:
+                        </label>
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                          <input
+                            type="text"
+                            id="input"
+                            value={inputValue}
+                            onChange={handleInputChange}
+                            placeholder="Unesite reč ili frazu"
+                            className={styles.field}
+                          />
+                          <button onClick={handleAddPhrase} className={styles.addButton}>Dodaj</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.bubbleContainer}>
+                      {phrases.map((phrase, index) => (
+                        <div key={index} className={styles.wordBubble}>
+                          {phrase}
+                          <button className={styles.deleteButton} onClick={(e) => handleDeletePhrase(e, index)}>x</button>
+                        </div>
+                      ))}
                     </div>
                   </>
                 )}

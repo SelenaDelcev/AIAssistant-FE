@@ -87,3 +87,51 @@
 .executeTemplateButton:hover {
     background-color: #575757;
 }
+  
+.addButton {
+    height: 100%;
+    padding: 0px 5px;
+    font-size: 13px;
+    background-color: transparent;
+    color: black;
+    border: 2px solid #2c2c3a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .addButton:hover {
+    background-color: #2c2c3a;
+    color: #ffff;
+  }
+  
+  .bubbleContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    gap: 2px;
+    max-width: 450px;
+  }
+  
+  .wordBubble {
+    background-color: #dc6a6a;
+    padding: 5px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 30px;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  
+  .deleteButton {
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    margin-left: 5px;
+    cursor: pointer;
+  }
