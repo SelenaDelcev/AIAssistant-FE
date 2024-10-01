@@ -1,13 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import Draggable from 'react-draggable';
 import styles from './Keyword.module.css'
 import Languages from './choices/Languages';
 import VoiceTones from './choices/VoiceTones';
 import WritingStyle from './choices/WritingStyle';
 import Category from './choices/Category';
-import { Caesar_Dressing } from 'next/font/google';
 import { title } from 'process';
 
 const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: string) => void }> = ({ onClose, handleSubmit }) => {
@@ -35,6 +33,8 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
   const [commentType, setCommentType] = useState<string>('appreciative');
   const [inputValue, setInputValue] = useState('');
   const [phrases, setPhrases] = useState<string[]>([]);
+  const contextAreaRef = useRef<HTMLTextAreaElement>(null);
+  const [contextValue, setContextValue] = useState('');
   
   useEffect(() => {
     setSubCategory("");
@@ -47,15 +47,16 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
 
   useEffect(() => {
     updateTextAreaValue();
-  }, [category, subCategory, template, language, voiceTone, writingStyle, topic, totalPosts, audience, threadsPerWeek, totalMonths, instagramPost, total, instagramComment, industry, postLength, jobDescription, length, linkedinPost, commentType, phrases]);
+  }, [category, subCategory, template, language, voiceTone, writingStyle, topic, totalPosts, audience, threadsPerWeek, totalMonths, instagramPost, total, instagramComment, industry, postLength, jobDescription, length, linkedinPost, commentType, phrases, contextValue]);
 
-  useEffect(() => {
-    if (textAreaRef.current) {
-      textAreaRef.current.style.height = 'auto';
-      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+  const handleContextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContextValue(e.target.value);
+    if (contextAreaRef.current) {
+      contextAreaRef.current.style.height = 'auto';
+      contextAreaRef.current.style.height = `${contextAreaRef.current.scrollHeight}px`;
     }
-  }, [textareaValue]);
-
+  };
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
@@ -122,6 +123,8 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
         const keywords = phrases.join(', ');
         formattedText = `${formattedText}. Use keywords like: ${keywords}`;
       }
+      if(contextValue.length !== 0)
+        formattedText = `${formattedText}. Use this context: ${contextValue}`;
     }
     formattedText = `${formattedText}. You have a ${voiceTone} tone of voice. You have a ${writingStyle} writing style. Do not self reference. Do not explain what you are doing.`;
     setTextAreaValue(formattedText);
@@ -153,17 +156,12 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
   };
 
   return (
-    <Draggable>
+    <>
+      <div className={styles.modalOverlay} onClick={handleClose}></div>
+      
       <div className={styles.container}>
-        <div className={styles.draggable}>
-          <div className={styles.title}>
-            <span>Generator upita</span>
-          </div>
-          <button className={styles.closeButton} onClick={handleClose}>
-            ✖
-          </button>
-        </div>
-
+        <button className={styles.closeButton} onClick={handleClose}>✖</button>
+        
         <div style={{ padding: '20px', backgroundColor: '#fff', color: 'black' }}>
           <form className={styles.form}>
             <div className={styles.rowOfChoices}>
@@ -777,6 +775,25 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
                         </div>
                       ))}
                     </div>
+                    <div className={styles.rowOfChoices}>
+                      <div className={styles.choice}>
+                        <label htmlFor="context" className={styles.label}>
+                          Unesite kontekst ili opis:
+                        </label>
+                        <div>
+                        <textarea
+                          id="context"
+                          ref={contextAreaRef} 
+                          value={contextValue}
+                          onChange={handleContextChange}
+                          placeholder="Unesite kontekst ili opis"
+                          className={styles.field} 
+                          rows={1} 
+                          style={{ overflow: 'hidden', resize: 'none' }}
+        />
+                        </div>
+                      </div>
+                    </div>
                   </>
                 )}
                 <div className={styles.prompt}>
@@ -789,7 +806,7 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
                     value={textareaValue}
                     onChange={e => setTextAreaValue(e.target.value)}
                     className={styles.field}
-                    style={{ overflow: 'hidden', resize: 'none'}}
+                    style={{ overflowY: 'scroll', maxHeight: '80px', resize: 'none'}}
                   />
                 </div>
                 <div className={styles.buttonContainer}>
@@ -802,7 +819,7 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
           </form>
         </div>
       </div>
-    </Draggable>
+    </>
   );
 };
 

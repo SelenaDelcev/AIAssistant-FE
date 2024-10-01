@@ -33,7 +33,7 @@ export default async function Home({
             {cardLandingDataMockConst.map((card, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Link href={card.href || "#"} passHref>
-                  <Card>
+                  <Card className={styles.card}>
                     <CardMedia
                       component="img"
                       height="300"

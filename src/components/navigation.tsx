@@ -19,9 +19,6 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -34,7 +31,7 @@ function ResponsiveAppBar() {
   const companyName = "Positive";
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ backgroundColor: '#2a2a2a'}}>
         <Toolbar disableGutters>
           <Typography
             variant="h6"

@@ -10,7 +10,7 @@ import { mockedCardData } from "@/consts/cardShortcutsDataMockConst";
 import { toolsMockedDataConst } from "@/consts/toolsMockedDataConst";
 import SupportMenu from "@/components/supportMenu/supportMenu";
 import KeywordForm from "@/components/tools/keywordForm/KeywordForm";
-import Draggable from "react-draggable";
+import styles from './chat.module.css';
 
 export default function ChatPageClient({
   translatedStrings,
@@ -39,7 +39,7 @@ export default function ChatPageClient({
   };
 
   return (
-    <main>
+    <main className={styles.main}>
       <Container maxWidth="xl">
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
@@ -52,9 +52,7 @@ export default function ChatPageClient({
           <Grid item xs={12} md={6}>
             <ChatBoX locale={locale} ref={chatBoxRef} />
             {showKeywordForm && (
-              <Draggable handle=".draggable">
-                <KeywordForm handleSubmit={handleFormSubmit} onClose={handleCloseKeywordForm} />
-              </Draggable>
+              <KeywordForm handleSubmit={handleFormSubmit} onClose={handleCloseKeywordForm} />
             )}
           </Grid>
           <Grid item xs={12} md={3}>

@@ -16,7 +16,7 @@ export default async function ChatPageServer({
 
   const translatedStrings = {
     userShortcutsTitle: t("userShortcuts"),
-    toolsTitle: t("tools"),
+    toolsTitle: t("Tools"),
   };
 
   return (

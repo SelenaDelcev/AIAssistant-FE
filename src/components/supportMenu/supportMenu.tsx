@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { Card, CardContent, Grid, Typography, styled } from "@mui/material";
+import { Box, Card, CardContent, Grid, Typography, styled } from "@mui/material";
+import style from './supportMenu.module.css';
 
 const Container = styled("div")(() => ({
   maxHeight: "70vh",
@@ -18,11 +19,14 @@ const SupportMenu = ({ cardData }: { cardData: any }) => {
               rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
             >
-              <Card>
+              <Card className={style.card}>
                 <CardContent>
-                  <Typography variant="h6" component="div">
-                    {card.title}
-                  </Typography>
+                  <Box display="flex" alignItems="center">
+                    {card.icon && React.createElement(card.icon, { style: { marginRight: 8 } })}
+                    <Typography variant="body1" className={style.cardDetail} component="div">
+                      {card.title}
+                    </Typography>
+                  </Box>
                   <Typography variant="body2">{card.content}</Typography>
                 </CardContent>
               </Card>

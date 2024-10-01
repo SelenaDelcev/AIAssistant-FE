@@ -1,33 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
 
 .chatContainer {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 70vh;
-  border: 1px solid #3d3d3d;
-  border-radius: 5px;
-  background-color: #3d3d3d;
-  background-image: url('/positive-background.png'); 
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat;
-  box-shadow: inset 0 0 8px #3d3d3d;
-  overflow: hidden;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 70vh !important;
+  border: 1px solid #3d3d3d !important;
+  border-radius: 5px !important;
+  background-color: #3d3d3d !important;
+  background-image: url('/positive-background.png') !important; 
+  background-size: cover !important; 
+  background-position: center !important; 
+  background-repeat: no-repeat !important;
+  box-shadow: inset 0 0 8px #3d3d3d !important;
+  overflow: hidden !important;
 }
 
 .messages {
-  flex: 1; 
-  padding: 10px;
-  overflow-y: auto;
-  border-bottom: 1px solid #3d3d3d;
+  flex: 1 !important; 
+  padding: 10px !important;
+  overflow-y: auto !important;
+  border-bottom: 1px solid #3d3d3d !important;
 }
 
 .inputRowContainer {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
+  display: flex !important;
+  justify-content: center !important;;
+  padding: 10px !important;
 }
 
 .messageInput {
@@ -37,7 +37,7 @@
   max-width: 600px;
   background-color: #505050;
   border-radius: 25px;
-  padding: 5px;
+  padding: 3px;
 }
 
 .inputContainer {
@@ -93,7 +93,7 @@
   position: absolute;
   z-index: 0;
   bottom: 0;
-  right: -8px;
+  right: -9px;
   height: 20px;
   width: 20px;
   background: linear-gradient(145deg, #f33b4b, #f33b4b);
@@ -146,4 +146,174 @@
   height: 20px;
   background: linear-gradient(-90deg, #3d3d3d, #3d3d3d);
   border-bottom-right-radius: 10px;
+}
+
+.typingIndicator {
+  color: #fff;
+  margin-right: auto;
+  background: none;
+  background-attachment: fixed;
+  position: relative;
+  padding: 5px 1px;
+  margin-top: 5px;
+  margin-bottom: -10px;
+  max-width: 400px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.typingIndicator .dot1, 
+.typingIndicator .dot2, 
+.typingIndicator .dot3 {
+  font-size: 24px; 
+  font-weight: bold; 
+  margin: 0 2px;
+  animation: blink 2s infinite both; 
+}
+.typingIndicator .dot2 {
+  animation-delay: 0.4s;
+}
+.typingIndicator .dot3 {
+  animation-delay: 0.8s;
+}
+
+.inputRow {
+  display: flex !important;;
+  align-items: center !important;;
+  padding: 0px !important;;
+  margin-bottom: 1px !important;;
+  background-color: #3d3d3d !important;;
+  border-radius: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sendButton {
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  border: none;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%; 
+  background-color: #3d3d3d;
+  color: #b3b3b3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sendButton.recording {
+  background-color: #3d3d3d;
+  color: #2a2a2a;
+}
+
+.sendButton:hover {
+  background-color: #3d3d3d;
+  color: #ffff;
+}
+
+.sendButton.recording:hover {
+  background-color: #f33b4b;
+  color: #ffff;
+}
+
+.inputField::placeholder {
+  color: #ffff;
+}
+
+.inputField:focus {
+  outline: none;
+}
+
+.sendButton:enabled {
+  cursor: pointer; 
+  background-color: #505050;
+  color: #ffff;
+}
+
+.sendButton:enabled:hover {
+  color: #ffff;
+}
+
+.sendButton:disabled {
+  background-color: #505050;
+  color: #b3b3b3; 
+}
+
+.sendButton:disabled:hover {
+  background-color: #505050;
+  color: #b3b3b3; 
+}
+
+.speedDial {
+  width: 45px !important;
+  height: 45px !important;
+  margin-left: 8px !important;
+  z-index: 0 !important;
+}
+.speedDial .MuiSpeedDialFab {
+  width: 45px !important;
+  height: 45px !important;
+  margin: 3px !important;
+  padding: 0 !important; 
+  border-radius: 50% !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background-color: #505050 !important;
+}
+.speed-dial .MuiSpeedDialFab:hover {
+  background-color: #505050 !important;
+  color:  #fff !important;
+}
+.speedDial .MuiSpeedDialAction-fab:hover {
+  background-color: #2a2a2a !important;
+  color: #fff !important;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateY(0); 
+  }
+}
+
+@media (max-width: 600px) {
+  .speedDialWrapper {
+    padding-bottom: 40px; 
+  }
+  .speedDial {
+    width: 35px;
+    height: 35px; 
+    margin-left: 5px;
+  }
+  .speedDial .MuiSpeedDialFab {
+    width: 35px;
+    height: 35px;
+  }
+  .speedDial .MuiSpeedDialIcon-root {
+    font-size: 20px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

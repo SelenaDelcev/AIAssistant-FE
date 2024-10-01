@@ -11,8 +11,7 @@ import {
 import style from "./userShortcut.module.css";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
+  backgroundColor: theme.palette.secondary.main,
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
@@ -25,7 +24,6 @@ const Item = styled(Paper)(({ theme }) => ({
 const StickyTitle = styled(Typography)(({ theme }) => ({
   position: "sticky",
   top: 0,
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   zIndex: 1,
   padding: theme.spacing(2),
   paddingLeft: 0,
@@ -47,8 +45,8 @@ const UserShortcuts = ({
   };
 
   return (
-    <Item>
-      <StickyTitle variant="h6" gutterBottom>
+    <Item className={style.userShortcut}>
+      <StickyTitle variant="body1" className={style.stickyTitle} gutterBottom>
         {title}
       </StickyTitle>
       <Grid container spacing={2} padding={1}>
@@ -56,12 +54,13 @@ const UserShortcuts = ({
           <Grid item xs={6} key={card.id}>
             <a
               href="#"
-              onClick={() => handleCardClick(card.id)} 
+              onClick={() => handleCardClick(card.id)}
               style={{ textDecoration: "none" }}
             >
               <Card className={style.card}>
                 <CardContent>
-                  <Typography variant="h6" component="div" >
+                  {card.icon && React.createElement(card.icon)}
+                  <Typography variant="body1" style={{ fontSize: '13px' }}component="div" >
                     {card.title}
                   </Typography>
                 </CardContent>

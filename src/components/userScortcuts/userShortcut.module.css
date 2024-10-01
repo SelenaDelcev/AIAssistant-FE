@@ -1,7 +1,18 @@
 .card {
   height: 90%;
+  background-color: #505050 !important;
+  color: #ffff;
 }
 
 .card:hover {
-  background-color: #ccc;
+  background-color: #f43b4b !important;;
+}
+
+.userShortcut {
+  background-color: #3d3d3d !important;
+}
+
+.stickyTitle {
+  font-size: 16px;
+  color: #ffff;
 }

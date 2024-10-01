@@ -8,13 +8,11 @@ import {
   styled,
   useTheme,
 } from "@mui/material";
+import style from './tools.module.css';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
   display: "flex",
   alignItems: "center",
   justifyContent: "start",
@@ -25,7 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Tools = ({ title, items }: { title: string; items: any }) => {
   const theme = useTheme();
   return (
-    <Item>
+    <Item className={style.tool }>
       <Grid
         sx={{ padding: theme.spacing(1) }}
         container
@@ -34,9 +32,9 @@ const Tools = ({ title, items }: { title: string; items: any }) => {
       >
         <Grid item>
           <Typography
-            variant="h6"
+            variant="body1"
             component="div"
-            sx={{ whiteSpace: "nowrap", textTransform: "uppercase" }}
+            sx={{ whiteSpace: "nowrap", fontSize: "18px", color: "#fff" }}
           >
             {title}
           </Typography>
@@ -53,7 +51,7 @@ const Tools = ({ title, items }: { title: string; items: any }) => {
         />
         {items.map((item: any, index: any) => (
           <Grid item key={index}>
-            <Paper
+            <Paper className={style.number}
               sx={{
                 padding: theme.spacing(3),
                 textAlign: "center",
