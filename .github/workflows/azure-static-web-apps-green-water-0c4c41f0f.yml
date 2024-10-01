@@ -32,6 +32,7 @@ jobs:
         env:
           NEXT_PUBLIC_OPENAI_API_KEY: ${{ secrets.NEXT_PUBLIC_OPENAI_API_KEY }}
           NEXT_PUBLIC_CHAT_BE_URL: ${{ secrets.NEXT_PUBLIC_CHAT_BE_URL }}
+          NEXT_PUBLIC_CHAT_FE_URL: ${{ secrets.NEXT_PUBLIC_CHAT_FE_URL }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
