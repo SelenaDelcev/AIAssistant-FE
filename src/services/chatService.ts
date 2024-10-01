@@ -34,7 +34,7 @@ export const sendMessage = async (
 
 export const transcribeAudio = async (formData: FormData, sessionId: string) => {
   try {
-    const response = await axios.post('http://localhost:8000/transcribe', formData, {
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_CHAT_BE_URL}/transcribe`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Session-ID': sessionId,
@@ -58,7 +58,7 @@ export const handleFileSubmit = async (newMessage: ChatMessage, sessionId: strin
 
   try {
     const response = await axios.post(
-      "http://localhost:8000/upload",
+      `${process.env.NEXT_PUBLIC_CHAT_BE_URL}/upload`,
       formData,
       {
         headers: {

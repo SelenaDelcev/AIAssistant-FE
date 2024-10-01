@@ -26,7 +26,7 @@ const useChatEventSource = (sessionId: string, defaultLocale: string, handleAudi
   const getEventSource = useCallback(() => {
     setIsAssistantResponding(true);
     const eventSource = new EventSource(
-      `http://localhost:8000/chat/stream?session_id=${sessionId}`,
+      `${process.env.NEXT_PUBLIC_CHAT_BE_URL}/chat/stream?session_id=${sessionId}`,
       {
         withCredentials: true,
       }
