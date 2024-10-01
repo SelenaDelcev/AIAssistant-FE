@@ -126,7 +126,11 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
       if(contextValue.length !== 0)
         formattedText = `${formattedText}. Use this context: ${contextValue}`;
     }
-    formattedText = `${formattedText}. You have a ${voiceTone} tone of voice. You have a ${writingStyle} writing style. Do not self reference. Do not explain what you are doing.`;
+    if(voiceTone !== 'Default')
+      formattedText = `${formattedText}. You have a ${voiceTone} tone of voice.`;
+    if(writingStyle !== 'Default')
+      formattedText = `${formattedText}.  You have a ${writingStyle} writing style.`;
+    formattedText = `${formattedText}. Do not self reference. Do not explain what you are doing.`;
     setTextAreaValue(formattedText);
   };
 

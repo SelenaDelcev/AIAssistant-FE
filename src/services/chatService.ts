@@ -14,7 +14,7 @@ export const sendMessage = async (
   audioResponse: boolean
 ) => {
   const response = await axios.post(
-    "http://localhost:8000/chat",
+    `${process.env.NEXT_PUBLIC_CHAT_BE_URL}/chat`,
     {
       message,
       language,
