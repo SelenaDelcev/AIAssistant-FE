@@ -1,32 +1,27 @@
-import DescriptionIcon from '@mui/icons-material/Description';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import ArticleIcon from '@mui/icons-material/Article';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import HelpIcon from '@mui/icons-material/Help';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 export const mockedCardDataRename = [
   {
     id: 1,
-    title: "AI Zapisnik",
-    icon: DescriptionIcon,
+    title: "User info",
+    icon: PersonIcon,
   },
   {
     id: 2,
-    title: "AI Marketing Asistent",
-    icon: LibraryBooksIcon,
+    title: "Setup",
+    icon: SettingsIcon,
   },
   {
     id: 3,
-    title: "AI Document Creator",
-    icon: ArticleIcon,
+    title: "Help",
+    icon: HelpIcon,
   },
   {
     id: 4,
-    title: "Card Title 4",
-    icon: EmojiEmotionsIcon,
-  },
-  {
-    id: 5,
-    title: "Card Title 5",
+    title: "Feedback",
     icon: EmojiEmotionsIcon,
   },
 ];

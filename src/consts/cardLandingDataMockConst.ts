@@ -1,22 +1,20 @@
 export const cardLandingDataMockConst = [
   {
-    title: "Marketing Asistent",
+    title: "Marketing Assistant",
     image:
       "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/fd0e7030-2d5b-420d-a82a-e7d7d7d6e33c/bd231750-c829-46ae-ba1d-4a42cdb841c2.png",
     href:
       `${process.env.NEXT_PUBLIC_CHAT_FE_URL}/chat`,
     },
   {
-    title: "Card 2",
+    title: "Zapisnik",
     image:
       "https://maui.hawaii.edu/wp-content/uploads/2024/02/ABIT-Cybersecurity-768x768.jpg",
-    description: "This is the description for card 2.",
   },
   {
-    title: "Card 3",
+    title: "Document Creator",
     image:
       "https://blogs.vit.ac.in/wp-content/uploads/2024/02/Cyber-Security-768x768.webp",
-    description: "This is the description for card 3.",
   },
   {
     title: "Card 4",
