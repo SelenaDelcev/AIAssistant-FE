@@ -51,6 +51,7 @@ const Chat = forwardRef(({ locale }: { locale: string }, ref) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [tooltipText, setTooltipText] = useState<Record<string, unknown>>({});
   const [showTypingIndicator, setShowTypingIndicator] = useState<boolean>(false);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleAudioResponse = (audioBase64: string) => {
     if (audioResponse) {
@@ -65,6 +66,13 @@ const Chat = forwardRef(({ locale }: { locale: string }, ref) => {
     locale,
     handleAudioResponse
   )
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [userMessage]);
 
   useEffect(() => {
     const storedSessionId = sessionStorage.getItem("sessionId");
@@ -258,8 +266,12 @@ const Chat = forwardRef(({ locale }: { locale: string }, ref) => {
   };
   
   useImperativeHandle(ref, () => ({
-    handleSubmit,
+    handleAppendToInput,
   }));
+
+  const handleAppendToInput = (messageContent: string) => {
+    setUserMessage(messageContent);
+  }
 
   const handleAudioResponseClick = () => {
     if (audioRef.current) {
@@ -372,12 +384,29 @@ const Chat = forwardRef(({ locale }: { locale: string }, ref) => {
         <Box className={styles.inputRow}>
           <form className={styles.messageInput} onSubmit={(e) => { e.preventDefault(); handleSubmit(userMessage); setUserMessage(""); }}>
             <Box className={styles.inputContainer}>
-              <input
-                type="text"
+              <textarea
+                ref={textareaRef}
+                rows={1}
                 className={styles.inputField}
                 placeholder='Kako mogu da ti pomognem?'
                 value={userMessage}
-                onChange={(e) => setUserMessage(e.target.value)}
+                onChange={(e) => {
+                  setUserMessage(e.target.value);
+                  e.target.style.height = 'auto';
+                  e.target.style.height = `${e.target.scrollHeight}px`;
+                }}
+                onPaste={(e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+                  const target = e.target as HTMLTextAreaElement;
+                  setUserMessage(target.value); 
+                  target.style.height = 'auto';
+                  target.style.height = `${target.scrollHeight}px`; 
+                }}
+                onKeyDown={(e: any) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSubmit(e); 
+                  }
+                }}
               />
               {userMessage.trim() ? (
                   <Button type="submit" className={styles.sendButton}>

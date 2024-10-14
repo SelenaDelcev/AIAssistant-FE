@@ -8,7 +8,7 @@ import WritingStyle from './choices/WritingStyle';
 import Category from './choices/Category';
 import { title } from 'process';
 
-const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: string) => void }> = ({ onClose, handleSubmit }) => {
+const KeywordForm: React.FC<{ onClose: () => void; handleAppendToInput: (message: string) => void }> = ({ onClose, handleAppendToInput }) => {
   const [category, setCategory] = useState<string>('');
   const [subCategory, setSubCategory] = useState<string>('');
   const [template, setTemplate] = useState<string>(''); 
@@ -150,7 +150,7 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
   };
 
   const handleExecute = () => {
-    handleSubmit(textareaValue);
+    handleAppendToInput(textareaValue);
     handleClose();
   };
 
@@ -800,19 +800,6 @@ const KeywordForm: React.FC<{ onClose: () => void; handleSubmit: (message: strin
                     </div>
                   </>
                 )}
-                <div className={styles.prompt}>
-                  <label htmlFor="textarea" className={styles.label}>
-                    Prompt Template:
-                  </label>
-                  <textarea
-                    id="textarea"
-                    ref={textAreaRef} 
-                    value={textareaValue}
-                    onChange={e => setTextAreaValue(e.target.value)}
-                    className={styles.field}
-                    style={{ overflowY: 'scroll', maxHeight: '80px', resize: 'none'}}
-                  />
-                </div>
                 <div className={styles.buttonContainer}>
                   <button type="button" onClick={handleExecute} className={styles.executeTemplateButton}>
                     Pošalji poruku

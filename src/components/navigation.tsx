@@ -31,7 +31,7 @@ function ResponsiveAppBar() {
   const companyName = "Positive";
   return (
     <AppBar position="static">
-      <Container maxWidth="xl" sx={{ backgroundColor: '#2a2a2a'}}>
+      <Container maxWidth={false} sx={{ backgroundColor: '#2a2a2a'}}>
         <Toolbar disableGutters>
           <Typography
             variant="h6"

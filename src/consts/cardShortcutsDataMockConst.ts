@@ -1,4 +1,4 @@
-import HomeIcon from '@mui/icons-material/Home';
+import PaletteIcon from '@mui/icons-material/Palette';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import ImageIcon from '@mui/icons-material/Image';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -6,8 +6,8 @@ import DescriptionIcon from '@mui/icons-material/Description';
 export const mockedCardData = [
   {
     id: 1,
-    title: "Card Title 1",
-    icon: HomeIcon
+    title: "KWE",
+    icon: PaletteIcon
   },
   {
     id: 2,
@@ -23,11 +23,6 @@ export const mockedCardData = [
     id: 4,
     title: "Card Title 4",
     icon: DescriptionIcon,
-  },
-  {
-    id: 5,
-    title: "Card Title 5",
-    icon: HomeIcon
   },
   {
     id: 6,

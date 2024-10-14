@@ -6,22 +6,22 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 export const mockedCardDataRename = [
   {
     id: 1,
-    title: "User info",
+    title: "Informacije o korisniku",
     icon: PersonIcon,
   },
   {
     id: 2,
-    title: "Setup",
+    title: "Podešavanje",
     icon: SettingsIcon,
   },
   {
     id: 3,
-    title: "Help",
+    title: "Pomoć",
     icon: HelpIcon,
   },
   {
     id: 4,
-    title: "Feedback",
+    title: "Ostavite komentar",
     icon: EmojiEmotionsIcon,
   },
 ];

@@ -16,7 +16,7 @@ export default function ChatPageClient({
   translatedStrings,
   locale,
 }: {
-  translatedStrings: { userShortcutsTitle: string; toolsTitle: string };
+  translatedStrings: { toolsTitle: string };
   locale: string;
 }) {
   const [showKeywordForm, setShowKeywordForm] = useState(false);
@@ -30,7 +30,7 @@ export default function ChatPageClient({
 
   const handleFormSubmit = (message: string) => {
     if (chatBoxRef.current) {
-      chatBoxRef.current.handleSubmit(message);
+      chatBoxRef.current.handleAppendToInput(message);
     }
   };
 
@@ -44,7 +44,6 @@ export default function ChatPageClient({
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
             <UserShortcuts
-              title={translatedStrings.userShortcutsTitle}
               cardData={mockedCardData}
               onCardClick={handleShowKeywordForm}
             />
@@ -52,14 +51,11 @@ export default function ChatPageClient({
           <Grid item xs={12} md={6}>
             <ChatBoX locale={locale} ref={chatBoxRef} />
             {showKeywordForm && (
-              <KeywordForm handleSubmit={handleFormSubmit} onClose={handleCloseKeywordForm} />
+              <KeywordForm handleAppendToInput={handleFormSubmit} onClose={handleCloseKeywordForm} />
             )}
           </Grid>
           <Grid item xs={12} md={3}>
             <SupportMenu cardData={mockedCardDataRename} />
-          </Grid>
-          <Grid item xs={12}>
-            <Tools title={translatedStrings.toolsTitle} items={toolsMockedDataConst} />
           </Grid>
         </Grid>
       </Container>

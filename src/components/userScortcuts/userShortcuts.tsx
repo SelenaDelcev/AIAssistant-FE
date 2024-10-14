@@ -32,11 +32,9 @@ const StickyTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const UserShortcuts = ({
-  title,
   cardData,
   onCardClick,
 }: {
-  title: string;
   cardData: any;
   onCardClick: (cardId: number) => void;
 }) => {
@@ -46,9 +44,6 @@ const UserShortcuts = ({
 
   return (
     <Item className={style.userShortcut}>
-      <StickyTitle variant="body1" className={style.stickyTitle} gutterBottom>
-        {title}
-      </StickyTitle>
       <Grid container spacing={2} padding={1}>
         {cardData.map((card: any) => (
           <Grid item xs={6} key={card.id}>
