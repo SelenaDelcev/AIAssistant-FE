@@ -136,10 +136,6 @@ const KeywordForm: React.FC<{ onClose: () => void; handleAppendToInput: (message
 
   const subCategoriesMap: { [key: string]: string[] } = {
     socialPost: ["Instagram", "Facebook", "Linkedin"],
-    landingPage: ["konverzionaStranica", "proizvodnaStranica"],
-    newsletter: ["promotivni", "informativni", "edukativni"],
-    video: ["Youtube", "instrukcije", "vlog"],
-    txtToPic: ["instagramSlika", "poster"],
   };
 
   const templateMap: { [key: string]: string[] } = {
