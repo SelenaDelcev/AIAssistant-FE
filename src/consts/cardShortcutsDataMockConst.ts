@@ -6,13 +6,13 @@ import DescriptionIcon from '@mui/icons-material/Description';
 export const mockedCardData = [
   {
     id: 1,
-    title: "KWE",
+    title: "Kreiraj dokument",
     icon: PaletteIcon
   },
   {
     id: 2,
-    title: "Card Title 2",
-    icon: SaveAltIcon,
+    title: "Piši u stilu",
+    icon: PaletteIcon,
   },
   {
     id: 3,

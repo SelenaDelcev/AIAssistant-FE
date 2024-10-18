@@ -7,7 +7,7 @@ const Container = styled("div")(() => ({
   maxHeight: "70vh",
   overflow: "auto",
 }));
-const SupportMenu = ({ cardData }: { cardData: any }) => {
+const SupportMenu = ({ cardData, onHelpClick }: { cardData: any; onHelpClick: () => void; }) => {
   return (
     <Container>
       <Grid container spacing={2} direction="column">
@@ -19,7 +19,7 @@ const SupportMenu = ({ cardData }: { cardData: any }) => {
               rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
             >
-              <Card className={style.card}>
+              <Card className={style.card} onClick={onHelpClick}>
                 <CardContent>
                   <Box display="flex" alignItems="center">
                     {card.icon && React.createElement(card.icon, { style: { marginRight: 8 } })}
