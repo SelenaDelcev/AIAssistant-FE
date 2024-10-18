@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from "@mui/material";
+import { Avatar, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/material";
 import ChatBoX from "@/components/chatBox/chatBox";
 import UserShortcuts from "@/components/userScortcuts/userShortcuts";
 import { mockedCardDataRename } from "@/consts/cardDataMockConst";
@@ -9,6 +9,7 @@ import { mockedCardData } from "@/consts/cardShortcutsDataMockConst";
 import SupportMenu from "@/components/supportMenu/supportMenu";
 import KeywordForm from "@/components/tools/keywordForm/KeywordForm";
 import styles from './chat.module.css';
+import PersonIcon from '@mui/icons-material/Person';
 
 export default function ChatPageClient({
   translatedStrings,
@@ -20,6 +21,8 @@ export default function ChatPageClient({
   const [showKeywordForm, setShowKeywordForm] = useState(false);
   const chatBoxRef = useRef<any>(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openDialogStyle, setOpenDialogStyle] = useState(false);
+  const options = ['Miljan', 'Petar'];
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -29,9 +32,19 @@ export default function ChatPageClient({
     setOpenDialog(false);
   };
 
+  const handleOpenDialogStyle = () => {
+    setOpenDialogStyle(true);
+  };
+
+  const handleCloseDialogStyle = () => {
+    setOpenDialogStyle(false);
+  };
+
   const handleShowKeywordForm = (cardId: number) => {
     if (cardId === 1) {
       setShowKeywordForm(true);
+    } else if (cardId === 2) {
+      handleOpenDialogStyle()
     }
   };
 
@@ -116,6 +129,26 @@ export default function ChatPageClient({
           <DialogActions>
           <Button onClick={handleCloseDialog}>Zatvori</Button>
         </DialogActions>
+      </Dialog>
+      <Dialog open={openDialogStyle} onClose={() => handleCloseDialogStyle()}>
+        <DialogTitle>Piši u stilu kao</DialogTitle>
+        <DialogContent>
+          <List>
+            {options.map((option) => (
+              <ListItem key={option}>
+                <ListItemButton onClick={() => handleCloseDialogStyle()}>
+                <ListItemAvatar>
+                  <Avatar
+                    alt="avatar"
+                    src="/"
+                  />
+                </ListItemAvatar>
+                <ListItemText primary={option} />
+              </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </DialogContent>
       </Dialog>
     </main>
   );
